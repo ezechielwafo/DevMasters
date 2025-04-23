@@ -1,18 +1,12 @@
-// src/Controller/TicketController.php
+<?php
+
 namespace App\Controller;
 
-use App\Entity\Ticket;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Routing\Attribute\Route;
 
-class TicketController extends AbstractController
+final class TicketController extends AbstractController
 {
     public function new(Request $request, SluggerInterface $slugger): Response
     {
