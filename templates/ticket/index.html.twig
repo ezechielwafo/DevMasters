@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tickets{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">Liste des tickets</h1>
+        <a href="{{ path('ticket_new') }}" class="btn btn-primary">Créer un ticket</a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Titre</th>
+                <th>Statut</th>
+                <th>Priorité</th>
+                <th>Date de création</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+                <tr>
+                    <td>{{ ticket.title }}</td>
+                    <td>
+                        <span class="badge text-bg-{{ ticket.status == 'Ouvert' ? 'success' : (ticket.status == 'En cours' ? 'warning' : 'secondary') }}">
+                            {{ ticket.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge text-bg-{{ ticket.priotity == 'Haute' ? 'danger' : (ticket.priotity == 'Moyenne' ? 'warning' : 'info') }}">
+                            {{ ticket.priotity }}
+                        </span>
+                    </td>
+                    <td>{{ ticket.createdAt|date('d/m/Y H:i') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">Aucun ticket trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

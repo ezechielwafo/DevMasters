@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail du Ticket{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>{{ ticket.title }}</h1>
+    <p><strong>Description :</strong> {{ ticket.description }}</p>
+    <p><strong>Statut :</strong> {{ ticket.status }}</p>
+    <p><strong>Priorité :</strong> {{ ticket.priotity }}</p>
+    <p><strong>Date :</strong> {{ ticket.createdAt|date('d/m/Y H:i') }}</p>
+
+    <div class="mt-4 d-flex gap-2">
+        <a href="{{ path('ticket_edit', {'id': ticket.id}) }}" class="btn btn-primary">Modifier</a>
+        <form method="post" action="{{ path('ticket_delete', {'id': ticket.id}) }}" onsubmit="return confirm('Supprimer ce ticket ?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ticket.id) }}">
+            <button class="btn btn-danger">Supprimer</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
