@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity;
-use ApiPlatform\Metadata\ApiResource;
 use App\Repository\TicketRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -24,7 +23,7 @@ class Ticket
     private ?string $status = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $priotity = null;
+    private ?string $priority = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
@@ -73,14 +72,14 @@ class Ticket
         return $this;
     }
 
-    public function getPriotity(): ?string
+    public function getPriority(): ?string
     {
-        return $this->priotity;
+        return $this->priority;
     }
 
-    public function setPriotity(string $priotity): static
+    public function setPriority(string $priority): static
     {
-        $this->priotity = $priotity;
+        $this->priority = $priority;
 
         return $this;
     }
