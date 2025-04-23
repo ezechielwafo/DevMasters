@@ -1,4 +1,4 @@
-<?php
+// src/Form/TicketType.php
 
 namespace App\Form;
 
@@ -6,48 +6,35 @@ use App\Entity\Ticket;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class TicketType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', null, [
-                'label' => 'Titre',
-                'attr' => ['class' => 'form-control'],
-            ])
-            ->add('description', null, [
-                'label' => 'Description',
-                'attr' => ['class' => 'form-control'],
-            ])
+            ->add('title')
+            ->add('description')
             ->add('status', ChoiceType::class, [
                 'choices' => [
-                    'Ouvert' => 'open',
-                    'En cours' => 'in_progress',
-                    'Fermé' => 'closed',
+                    'Ouvert' => 'Ouvert',
+                    'En cours' => 'En cours',
+                    'Fermé' => 'Fermé',
                 ],
-                'label' => 'Statut',
-                'attr' => ['class' => 'form-select'],
             ])
             ->add('priority', ChoiceType::class, [
                 'choices' => [
-                    'Basse' => 'low',
-                    'Normale' => 'normal',
-                    'Haute' => 'high',
+                    'Haute' => 'Haute',
+                    'Moyenne' => 'Moyenne',
+                    'Basse' => 'Basse',
                 ],
-                'label' => 'Priorité',
-                'attr' => ['class' => 'form-select'],
             ])
-            ->add('createdAt', DateTimeType::class, [
+            ->add('createdAt', null, [
                 'widget' => 'single_text',
-                'label' => 'Date de création',
-                'attr' => ['class' => 'form-control'],
             ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Ticket::class,

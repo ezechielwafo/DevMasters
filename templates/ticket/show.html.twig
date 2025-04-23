@@ -1,46 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ticket{% endblock %}
+{% block title %}Détail du Ticket{% endblock %}
 
 {% block body %}
-    <h1>Ticket</h1>
+<div class="container mt-5">
+    <h1>{{ ticket.title }}</h1>
+    <p><strong>Description :</strong> {{ ticket.description }}</p>
+    <p><strong>Statut :</strong> {{ ticket.status }}</p>
+    <p><strong>Priorité :</strong> {{ ticket.priotity }}</p>
+    <p><strong>Date :</strong> {{ ticket.createdAt|date('d/m/Y H:i') }}</p>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ ticket.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ ticket.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ ticket.description }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ ticket.status }}</td>
-            </tr>
-            <tr>
-                <th>Priotity</th>
-                <td>{{ ticket.priotity }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Tickets</th>
-                <td>{{ ticket.Tickets }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_ticket_index') }}">back to list</a>
-
-    <a href="{{ path('app_ticket_edit', {'id': ticket.id}) }}">edit</a>
-
-    {{ include('ticket/_delete_form.html.twig') }}
+    <div class="mt-4 d-flex gap-2">
+        <a href="{{ path('ticket_edit', {'id': ticket.id}) }}" class="btn btn-primary">Modifier</a>
+        <form method="post" action="{{ path('ticket_delete', {'id': ticket.id}) }}" onsubmit="return confirm('Supprimer ce ticket ?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ticket.id) }}">
+            <button class="btn btn-danger">Supprimer</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
+

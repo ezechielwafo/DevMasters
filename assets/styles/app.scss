@@ -1,1 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
+.badge {
+  font-size: 0.85rem;
+  padding: 0.45em 0.75em;
+  border-radius: 0.6rem;
+  text-transform: capitalize;
+}
