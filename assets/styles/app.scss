@@ -1,0 +1,25 @@
+// Importez Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+// Styles personnalisés
+.ticket-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+
+    h1 {
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-primary {
+        padding: 0.5rem 2rem;
+    }
+}
