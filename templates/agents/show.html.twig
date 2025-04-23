@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agents{% endblock %}
+
+{% block body %}
+    <h1>Agents</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ agent.id }}</td>
+            </tr>
+            <tr>
+                <th>NameAgents</th>
+                <td>{{ agent.nameAgents }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ agent.roles }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ agent.email }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ agent.createdAt ? agent.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ agent.password }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_agents_index') }}">back to list</a>
+
+    <a href="{{ path('app_agents_edit', {'id': agent.id}) }}">edit</a>
+
+    {{ include('agents/_delete_form.html.twig') }}
+{% endblock %}

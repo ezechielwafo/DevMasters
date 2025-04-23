@@ -1,0 +1,10 @@
+knp_paginator:
+    page_range: 5                      # nombre de pages à afficher dans le menu
+    default_options:
+        page_name: page               # nom du paramètre de la page
+        sort_field_name: sort         # nom du paramètre pour le tri
+        sort_direction_name: direction # nom du paramètre pour l’ordre
+        distinct: true                # pour éviter les doublons
+    template:
+        pagination: '@KnpPaginator/Pagination/sliding.html.twig' # ou bootstrap_v5.html.twig
+        sortable: '@KnpPaginator/Pagination/sortable_link.html.twig'
